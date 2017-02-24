@@ -8,6 +8,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
+import javax.persistence.PostPersist;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -41,6 +44,28 @@ public class Aluno {
 	
 	@Transient //Não sera uma coluna no banco de dados	
 	private int senhaAtendimento;
+	
+	@PostPersist //Executa antes da operação de cadastro	
+	public void log(){
+		System.out.println("Cadastrando um aluno");
+	}
+
+	public Aluno(int rm, String nome, String cpf, Calendar dataNascimento, Sexo sexo, byte[] foto, boolean bolsista,
+			int senhaAtendimento) {
+		super();
+		this.rm = rm;
+		this.nome = nome;
+		this.cpf = cpf;
+		this.dataNascimento = dataNascimento;
+		this.sexo = sexo;
+		this.foto = foto;
+		this.bolsista = bolsista;
+		this.senhaAtendimento = senhaAtendimento;
+	}
+
+	public Aluno() {
+		super();
+	}
 
 	public int getRm() {
 		return rm;

@@ -13,6 +13,9 @@ public class Teste {
 		
 		EntityManager em = factory.createEntityManager();
 		
+		em.close();
+		factory.close();
+		
 	}
 	
 }
