@@ -1,5 +1,6 @@
 package br.com.fiap.entity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -30,8 +31,16 @@ public class GrupoAm {
 	@OneToOne(mappedBy="grupo",cascade=CascadeType.REMOVE,fetch=FetchType.EAGER)
 	private ProjetoAm projeto;
 	
-	@OneToMany(mappedBy="grupo")
-	private List<Aluno> integrantes;
+	@OneToMany(mappedBy="grupo",cascade=CascadeType.PERSIST)
+	private List<Aluno> integrantes = new ArrayList<Aluno>();
+	
+	//Método para adicionar alunos
+	public void addIntegrantes(Aluno aluno){
+		//Adicionar o aluno da lista de integrantes
+		integrantes.add(aluno);
+		//Setar o grupo do aluno
+		aluno.setGrupo(this);
+	}
 
 	public GrupoAm() {
 		super();

@@ -20,19 +20,20 @@ public class CadastroAlunoGrupoTeste {
 		EntityManager em = fabrica.createEntityManager();
 		
 		GrupoAmDAO grupoDao = new GrupoDAOImpl(em);
-		AlunoDAO alunoDao = new AlunoDAOImpl(em);
+		//AlunoDAO alunoDao = new AlunoDAOImpl(em);
 		
 		GrupoAm grupo = new GrupoAm(0, "Estagiários");
-		Aluno aluno1 = new Aluno(0, "Gargana", grupo);
-		Aluno aluno2 = new Aluno(0, "Edu", grupo);
-		Aluno aluno3 = new Aluno(0, "Juliao", grupo);
+		grupo.addIntegrantes(new Aluno(0, "Gargana", grupo));
+		grupo.addIntegrantes(new Aluno(0, "Edu", grupo));
+		grupo.addIntegrantes(new Aluno(0, "Juliao", grupo));
 		
 		try {
 			grupoDao.cadastrar(grupo);
-			alunoDao.cadastrar(aluno1);
-			alunoDao.cadastrar(aluno2);
-			alunoDao.cadastrar(aluno3);
-			alunoDao.commit();
+			grupoDao.commit();
+			//alunoDao.cadastrar(aluno1);
+			//alunoDao.cadastrar(aluno2);
+			//alunoDao.cadastrar(aluno3);
+			//alunoDao.commit();
 		} catch (CommitErrorException e) {
 			e.printStackTrace();
 		}
