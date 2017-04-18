@@ -16,5 +16,9 @@ public interface PacoteDAO extends GenericDAO<Pacote,Integer>{
 	
 	List<Pacote> buscarPorData(Calendar dataInicio, 
 											Calendar dataFim);
+	long qtdPacotesDataSaida(Calendar dataInicio, 
+			Calendar dataFim);
 	
+	List<Pacote> buscarPrecoMaximo();
+	double precoMedio();
 }
