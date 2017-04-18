@@ -70,6 +70,13 @@ public class ClienteDAOImpl extends GenericDAOImpl<Cliente,Integer> implements C
 				Long.class).getSingleResult();
 	}
 
+	@Override
+	public Cliente buscarPorCpf(String cpf) {
+		return em.createNamedQuery("Cliente.porCpf",Cliente.class)
+				.setParameter("cpf",cpf)
+				.getSingleResult();
+	}
+
 }
 
 
